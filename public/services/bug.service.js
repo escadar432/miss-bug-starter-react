@@ -1,5 +1,3 @@
-import { utilService } from './util.service.js'
-
 const STORAGE_KEY = 'bugDB'
 
 _createBugs()
