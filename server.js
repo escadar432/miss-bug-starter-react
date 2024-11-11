@@ -12,12 +12,14 @@ app.use(express.json())
 
 // List
 app.get('/api/bug', (req, res) => {
-    // console.log('req.query:', req.query)
     const filterBy = {
         txt: req.query.txt || '',
         severity: +req.query.severity || 0,
         labels: req.query.labels || ''
     }
+
+    console.log("Api get req.query", req.query.txt);
+    
     if (req.query.pageIdx) filterBy.pageIdx = req.query.pageIdx
     if (req.query.sortBy) filterBy.sortBy = JSON.parse(req.query.sortBy)
     // const sortBy = JSON.parse(req.query.sortBy)

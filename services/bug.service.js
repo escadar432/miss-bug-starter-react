@@ -1,10 +1,8 @@
 import fs from 'fs'
 import { utilService } from './util.service.js'
 
-const STORAGE_KEY = 'bugDB'
 
-const bugs = utilService.readJsonFile('data/bugs.json')
-console.log("BUGS form bug server", bugs)
+const gBugs = utilService.readJsonFile('data/bugs.json')
 
 //const bugsMapById = load.keyBy(bugs, '_id')
 
@@ -16,12 +14,20 @@ export const bugService = {
     remove
 }
 
-function query() {
+function query(filterBy = { txt: '', severity: 0, sortBy: { type: 'title', desc: 1 } }) {
+    console.log("im in query service server side", filterBy)
+    var bugs = gBugs
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        bugs = gBugs.filter(bug => regex.test(bug.title))
+    }
+console.log("bugs after filtering", bugs)
+
     return Promise.resolve(bugs)
 }
 
 function getById(bugId) {
-    const bug = bugs.find((bug) => bug._id === bugId)
+    const bug = gBugs.find(bug => bug._id === bugId)
     if (!bug) return Promise.reject('cannot find bug' + bugId)
     return Promise.resolve(bug)
 }
@@ -37,11 +43,12 @@ function save(bugToSave) {
     // 1.refactor to not send empty title
     // 2. add createdAt and updatedAt
     if (bugToSave._id) {
-        const bugIdx = bugs.findIndex(bug => bug._id === bugToSave._id)
-        bugs[bugIdx] = { ...bugToSave }
+        const bugIdx = gBugs.findIndex(bug => bug._id === bugToSave._id)
+        gBugs[bugIdx] = { ...bugToSave }
     } else {
         bugToSave._id = _makeId()
-        bugs.push(bugToSave)
+        bugService.createdAt = Date.now()
+        gBugs.unshift(bugToSave)
     }
 
     return _saveBugsToFile().then(() => bugToSave)
@@ -56,19 +63,20 @@ function _makeId(length = 5) {
     return txt
 }
 function remove(bugId) {
-    const bugIdx = bugs.findIndex(bug => bug._id === bugId)
+    console.log("im in remove server func")
+
+    const bugIdx = gBugs.findIndex(bug => bug._id === bugId)
     if (bugIdx === -1) return Promise.reject('No bug found')
-    bugs.splice(bugIdx, 1)
+    gBugs.splice(bugIdx, 1)
     return _saveBugsToFile()
 }
 function _saveBugsToFile() {
     return new Promise((resolve, reject) => {
-        const data = JSON.stringify(bugs, null, 4)
+        const data = JSON.stringify(gBugs, null, 4)
         fs.writeFile('data/bugs.json', data, (err) => {
             if (err) return reject(err)
             resolve()
         })
 
     })
-
 }

@@ -1,48 +1,13 @@
 [
     {
-        "_id": "ltNQGS",
-        "title": "NEW BUG FINALLY",
-        "description": "undefined",
-        "severity": 0
-    },
-    {
-        "_id": "09",
-        "title": "null",
-        "description": "undefined",
-        "severity": 0
-    },
-    {
-        "_id": "Duditn",
-        "title": "baby",
-        "description": "undefined",
-        "severity": 10
-    },
-    {
         "_id": "8uwGp0",
         "title": "nw",
         "description": "undefined",
         "severity": 8
     },
     {
-        "_id": "MjZnuo",
-        "title": "tttt",
-        "description": "undefined",
-        "severity": 123456789
-    },
-    {
-        "_id": "0rUVo",
-        "title": "ASAS",
-        "description": "undefined",
-        "severity": 4
-    },
-    {
         "title": "v",
         "severity": 5,
         "_id": "rbvsw"
-    },
-    {
-        "title": "tite",
-        "severity": 987654,
-        "_id": "aUMva"
     }
 ]

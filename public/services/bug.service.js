@@ -13,9 +13,9 @@ export const bugService = {
 }
 
 
-function query() {
+function query(filterBy) {
   return axios
-    .get(BASE_URL)
+    .get(BASE_URL,{ params: filterBy })
     .then(res => res.data)
     .catch(err=> console.log("Error while getting bugs server bug-service", err))
 }

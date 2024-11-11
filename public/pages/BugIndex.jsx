@@ -7,17 +7,19 @@ import {BugSort} from '../cmps/BugSort.jsx'
 const { useState, useEffect } = React
 
 export function BugIndex() {
+    //TODO why this is and bugFilter is rendered a few times after loading
     const [bugs, setBugs] = useState([])
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
 
+  //  console.log("bug index, filterby", filterBy)
+    
     useEffect(() => {
         loadBugs()
     }, [filterBy])
 
     function loadBugs() {
-        bugService.query()
-            .then((bugs) => setBugs(bugs))
-            .then(() => console.log("BugIndex cmp: got bugs", bugs))
+        bugService.query(filterBy)
+            .then(bugs => setBugs(bugs))
             .catch(err => console.log("BugIndex cmp: ant get bugs", err))
     }
 
@@ -73,7 +75,7 @@ export function BugIndex() {
             })
     }
 
-    function onSeFilterBy(filterBy) {
+    function onSetFilter(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
@@ -89,7 +91,7 @@ export function BugIndex() {
                 <h3>Bugs App</h3>
                 <button onClick={onAddBug}>Add Bug ⛐</button>
             </section>
-            {/* <BugFilter onSeFilterBy={onSeFilterBy} filterBy={{ ...filterBy }} /> */}
+            <BugFilter onSetFilter={onSetFilter} filterBy={{ ...filterBy }} />
             {/* <BugSort onSortBy={onSortBy} sortBy={{ ...filterBy.sortBy }} /> */}
             <main>
                 <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
