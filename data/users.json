@@ -1,0 +1,27 @@
+[
+    {
+        "_id": "1",
+        "username": "lucy",
+        "fullname": "lucy lu",
+        "password": "lucy",
+        "isAdmin": true
+    },
+    {
+        "_id": "2",
+        "username": "mini",
+        "fullname": "mini mi",
+        "password": "pass2"
+    },
+    {
+        "_id": "3",
+        "username": "ugy",
+        "fullname": "ugy ugy",
+        "password": "pass3"
+    },
+    {
+        "_id": "4",
+        "username": "aaa",
+        "fullname": "aa a",
+        "password": "pass4"
+    }
+]

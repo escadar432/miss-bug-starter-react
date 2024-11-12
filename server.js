@@ -2,6 +2,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import { bugService } from './services/bug.service.js'
+import { userService } from './services/user.service.js'
 
 const app = express()
 
@@ -18,13 +19,11 @@ app.get('/api/bug', (req, res) => {
         labels: req.query.labels || ''
     }
 
-    console.log("Api get req.query", req.query.txt);
-    
     if (req.query.pageIdx) filterBy.pageIdx = req.query.pageIdx
     if (req.query.sortBy) filterBy.sortBy = JSON.parse(req.query.sortBy)
-    // const sortBy = JSON.parse(req.query.sortBy)
     bugService.query(filterBy)
         .then(bugs => res.send(bugs))
+        .catch(`Cannot get bugs`, err => res.status(400).send(err))
 })
 
 // Read
@@ -49,8 +48,8 @@ app.delete('/api/bug/:bugId', (req, res) => {
         .catch(err => res.status(400).send('Had issues deleting bug :', err))
 })
 
-// Create
 
+// Create
 app.post('/api/bug', (req, res) => {
     const bug = req.body
     bugService.save(bug)
@@ -59,13 +58,57 @@ app.post('/api/bug', (req, res) => {
 })
 
 // Update
-
 app.put('/api/bug', (req, res) => {
     const bug = req.body
     bugService.save(bug)
         .then(savedBug => res.send(savedBug))
         .catch(err => res.status(500).send('Had issues editing:', err))
 })
+
+
+
+// ~~~~~~~~~Users~~~~~~~~
+
+// Get users
+app.get('/api/user', (req, res) => {
+    userService.query()
+        .then(users => res.send(users))
+        .catch(err => {
+            loggerService.error('Cannot load users', err)
+            res.status(400).send('Cannot load users')
+        })
+})
+
+
+//Get user by Id
+app.get('/api/user/:userId', (req, res) => {
+    const { userId } = req.params
+
+    userService.getById(userId)
+        .then(user => res.send(user))
+        .catch(err => {
+            loggerService.error('Cannot load user', err)
+            res.status(401).send('Cannot load user')
+        })
+})
+
+
+// Auth login 
+app.post('/api/auth/login', (req, res) => {
+    const credentials = req.body
+    userService.checkLogin(credentials)
+        .then(user => {
+            if (user) {
+                const loginToken = userService.getLoginToken(user)
+                res.cookie('loginToken', loginToken)
+                res.send(user)
+            } else {
+                res.status(404).send('Invalid Credentials')
+            }
+        })
+})
+
+
 
 
 // Fallback route
