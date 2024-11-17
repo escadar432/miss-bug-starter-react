@@ -42,6 +42,7 @@ function save(bugToSave) {
     //TODO 
     // 1.refactor to not send empty title
     // 2. add createdAt and updatedAt
+    //3. esc button to cancel deleletion [confirm Promise]
     if (bugToSave._id) {
         const bugIdx = gBugs.findIndex(bug => bug._id === bugToSave._id)
         gBugs[bugIdx] = { ...bugToSave }
