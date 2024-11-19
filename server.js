@@ -1,6 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import path from 'path'
+import chalk from 'chalk'
 import { bugService } from './services/bug.service.js'
 import { userService } from './services/user.service.js'
 
@@ -79,7 +80,6 @@ app.get('/api/user', (req, res) => {
         })
 })
 
-
 //Get user by Id
 app.get('/api/user/:userId', (req, res) => {
     const { userId } = req.params
@@ -92,10 +92,12 @@ app.get('/api/user/:userId', (req, res) => {
         })
 })
 
-
 // Auth login 
-app.post('/api/auth/login', (req, res) => {
+app.post('/api/user/auth/login', (req, res) => {
     const credentials = req.body
+    
+    console.log('credentials', credentials)
+    
     userService.checkLogin(credentials)
         .then(user => {
             if (user) {
@@ -108,8 +110,25 @@ app.post('/api/auth/login', (req, res) => {
         })
 })
 
+app.post('/api/auth/signup', (req, res) => {
+    const credentials = req.body
 
+    userService.save(credentials)
+        .then(user => {
+            if (user) {
+                const loginToken = userService.getLoginToken(user)
+                res.cookie('loginToken', loginToken)
+                res.send(user)
+            } else {
+                res.status(400).send('Cannot signup')
+            }
+        })
+})
 
+app.post('/api/auth/logout', (req, res) => {
+    res.clearCookie('loginToken')
+    res.send('logged-out!')
+})
 
 // Fallback route
 app.get('/**', (req, res) => {

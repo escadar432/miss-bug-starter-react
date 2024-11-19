@@ -3,8 +3,10 @@ import Cryptr from 'cryptr'
 
 import { utilService } from '../public/services/util.service.js'
 
+const cryptr = new Cryptr(process.env.SECRET1 || 'secret-puk-1234')
 
 const gUsers = utilService.readJsonFile('data/users.json')
+
 
 export const userService = {
     query,
@@ -18,9 +20,9 @@ export const userService = {
 }
 
 function query() {
-    const usersToReturn = gUsers.map(user => ({ _id: user._id, fullname: user.fullname }))
-    if (usersToReturn === undefined || usersToReturn.length === 0) return Promise.reject('No users found')
-    return Promise.resolve(usersToReturn)
+    // const usersToReturn = gUsers.map(user => ({ _id: user._id, fullname: user.fullname }))
+    // if (usersToReturn === undefined || usersToReturn.length === 0) return Promise.reject('No users found')
+    return Promise.resolve(gUsers)
 }
 
 
@@ -53,7 +55,10 @@ function checkLogin({ username, password }) {
             fullname: user.fullname,
             isAdmin: user.isAdmin,
         }
-        return Promise.resolve(usersToReturn)
+
+        console.log('User logged in:', user);
+
+        return Promise.resolve(user)
 
     }
     // if (user === undefined || !user) return Promise.reject('Error logging, Wrong username or password!') 
@@ -86,9 +91,9 @@ function validateToken(token) {
     return user
 }
 
-function _saveBugsToFile() {
+function _saveUsersToFile() {
     return new Promise((resolve, reject) => {
-        const data = JSON.stringify(gBugs, null, 4)
+        const data = JSON.stringify(gUsers, null, 4)
         fs.writeFile('data/users.json', data, (err) => {
             if (err) return reject(err)
             resolve()

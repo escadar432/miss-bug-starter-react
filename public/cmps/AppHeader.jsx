@@ -1,21 +1,49 @@
 const { NavLink } = ReactRouterDOM
-const { useEffect } = React
 
-import { UserMsg } from './UserMsg.jsx'
+const { useState } = React
+const { useNavigate } = ReactRouter
+
+import { userService } from '../services/user.service.js'
+import { LoginSignup } from './LoginSignup.jsx'
 
 export function AppHeader() {
-    useEffect(() => {
-        // component did mount when dependancy array is empty
-    }, [])
+
+    const [user, setUser] = useState(userService.getLoggedinUser())
+	const navigate = useNavigate()
+
+	function onLogout() {
+		userService.logout()
+            .then(() => onSetUser(null))
+            .catch(err => showErrorMsg('OOPs try again'))
+	}
+
+
+    function onSetUser(user) {
+		setUser(user)
+        navigate('/')
+	}
 
     return (
         <header className='container'>
-            <UserMsg />
-            <nav>
-                <NavLink to="/">Home</NavLink> |<NavLink to="/bug">Bugs</NavLink> |
-                <NavLink to="/about">About</NavLink>
-            </nav>
-            <h1>Bugs are Forever</h1>
+            <section className="header-container">
+                <nav>
+                    <NavLink to="/">Home</NavLink> |<NavLink to="/bug">Bugs</NavLink> |
+                    <NavLink to="/about">About</NavLink>
+                    <NavLink to="/bug">Bugs</NavLink>
+                </nav>
+            </section>
+            {user ?
+                (<section>
+                    <Link to={`/user/${user._id}`}> hello {user.fullname}</Link>
+                    <button onClick={onLogout}>Logout</button>
+
+                </section>
+                ) : 
+                (<section>
+                    <LoginSignup onSetUser={onSetUser} />
+                </section>)
+            }
+
         </header>
     )
 }

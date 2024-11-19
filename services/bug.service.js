@@ -2,10 +2,8 @@ import fs from 'fs'
 import { utilService } from './util.service.js'
 
 
-const gBugs = utilService.readJsonFile('data/bugs.json')
-
-//const bugsMapById = load.keyBy(bugs, '_id')
-
+//TODO when bugs file is empty, show message 'No bugs found, Add one!'
+const gBugs = utilService.readJsonFile('data/bugs.json') 
 
 export const bugService = {
     query,
@@ -15,14 +13,12 @@ export const bugService = {
 }
 
 function query(filterBy = { txt: '', severity: 0, sortBy: { type: 'title', desc: 1 } }) {
-    console.log("im in query service server side", filterBy)
     var bugs = gBugs
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
         bugs = gBugs.filter(bug => regex.test(bug.title))
     }
-console.log("bugs after filtering", bugs)
-
+    //console.log("bugs from query", bugs)
     return Promise.resolve(bugs)
 }
 

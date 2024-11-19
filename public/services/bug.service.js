@@ -1,7 +1,5 @@
 const STORAGE_KEY = 'bugDB'
 
-_createBugs()
-
 const BASE_URL = '/api/bug/'
 
 export const bugService = {

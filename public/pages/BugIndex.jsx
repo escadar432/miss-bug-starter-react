@@ -2,7 +2,6 @@ import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { BugList } from '../cmps/BugList.jsx'
 import { BugFilter } from '../cmps/BugFilter.jsx'
-import {BugSort} from '../cmps/BugSort.jsx'
 
 const { useState, useEffect } = React
 
@@ -11,11 +10,12 @@ export function BugIndex() {
     const [bugs, setBugs] = useState([])
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
 
-  //  console.log("bug index, filterby", filterBy)
-    
+    //  console.log("bug index, filterby", filterBy)
+
     useEffect(() => {
         loadBugs()
     }, [filterBy])
+
 
     function loadBugs() {
         bugService.query(filterBy)
