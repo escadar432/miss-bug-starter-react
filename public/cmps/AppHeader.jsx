@@ -1,4 +1,4 @@
-const { NavLink } = ReactRouterDOM
+const { Link,NavLink } = ReactRouterDOM
 
 const { useState } = React
 const { useNavigate } = ReactRouter
@@ -34,7 +34,7 @@ export function AppHeader() {
             </section>
             {user ?
                 (<section>
-                    <Link to={`/user/${user._id}`}> hello {user.fullname}</Link>
+                    <Link to={`/user/${user._id}`}> Hello  {user.username}</Link>
                     <button onClick={onLogout}>Logout</button>
 
                 </section>
