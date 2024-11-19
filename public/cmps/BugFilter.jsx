@@ -1,8 +1,12 @@
 const { useState, useEffect } = React
+
+import { LabelSelector } from '../cmps/LabelSelector.jsx'
+
+
 export function BugFilter({ onSetFilter, filterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
-   // console.log("Hi from the filter cmp", filterByToEdit)
+    // console.log("Hi from the filter cmp", filterByToEdit)
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
@@ -19,29 +23,38 @@ export function BugFilter({ onSetFilter, filterBy }) {
         }))
     }
 
+    function onLabelChange(selectedLabels) {
+        setFilterByToEdit(prevFilter => ({
+            ...prevFilter,
+            labels: selectedLabels,
+        })
+    )
+    console.log("the selected labels are:", selectedLabels);
+    
+    }
     const { severity, txt, label } = filterBy
 
-    return <form>
+    return <form className="bug-filter">
         <input
-            className='bug-filter'
+            className='bug-filter filter-input'
             placeholder="Enter bug's title here"
             type="text"
             id="txt"
             name="txt"
             value={txt}
-            onChange={handleChange}> 
+            onChange={handleChange}>
         </input>
-        {/* 
-        <select
-            onChange={handleChange}
-            Sort by severity
+        <input
+            placeholder="Enter severity here.."
+            className="filter-input filter-input"
+            type="text"
+            id="severity"
             name="severity"
             value={severity}
-        >
-            <select value="1"></select>
-            <select value="2"></select>
-            <select value="3"></select>
-        </select> */}
+            onChange={handleChange}
+        />
+        <LabelSelector onLabelChange={onLabelChange}  />
+
     </form>
 
 }

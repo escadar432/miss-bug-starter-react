@@ -1,9 +1,10 @@
+const { useState, useEffect } = React
+
 import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { BugList } from '../cmps/BugList.jsx'
 import { BugFilter } from '../cmps/BugFilter.jsx'
 
-const { useState, useEffect } = React
 
 export function BugIndex() {
     //TODO why this is and bugFilter is rendered a few times after loading
