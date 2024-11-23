@@ -1,3 +1,13 @@
 //TODO 
 1. Add filter select when adding new bug
  2. show labels on the bug view
+ 3. show user.name on header
+
+
+
+
+// DONE 
+// fix login
+// filter by severity >=
+//  2. show labels on the bug view
+
