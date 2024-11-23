@@ -93,11 +93,8 @@ app.get('/api/user/:userId', (req, res) => {
 })
 
 // Auth login 
-app.post('/api/user/auth/login', (req, res) => {
-    const credentials = req.body
-    
-    console.log('credentials', credentials)
-    
+app.post('/api/auth/login', (req, res) => {
+    const credentials = req.body    
     userService.checkLogin(credentials)
         .then(user => {
             if (user) {
@@ -112,7 +109,6 @@ app.post('/api/user/auth/login', (req, res) => {
 
 app.post('/api/auth/signup', (req, res) => {
     const credentials = req.body
-
     userService.save(credentials)
         .then(user => {
             if (user) {

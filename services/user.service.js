@@ -56,7 +56,7 @@ function checkLogin({ username, password }) {
             isAdmin: user.isAdmin,
         }
 
-        console.log('User logged in:', user);
+        console.log('User logged in:', user)
 
         return Promise.resolve(user)
 

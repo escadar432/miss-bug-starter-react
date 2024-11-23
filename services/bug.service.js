@@ -19,7 +19,7 @@ function query(filterBy = { txt: '', severity: 0, sortBy: { type: 'title', desc:
         bugs = gBugs.filter(bug => regex.test(bug.title))
     }
     if (filterBy.severity) {
-        bugs = bugs.filter(bug => bug.severity > filterBy.severity)
+        bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
     }
     console.log("bugs before label filter",bugs)
     
