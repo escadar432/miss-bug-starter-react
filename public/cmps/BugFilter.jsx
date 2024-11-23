@@ -28,9 +28,9 @@ export function BugFilter({ onSetFilter, filterBy }) {
             ...prevFilter,
             labels: selectedLabels,
         })
-    )
-    console.log("the selected labels are:", selectedLabels);
-    
+        )
+        console.log("the selected labels are:", selectedLabels)
+
     }
     const { severity, txt, label } = filterBy
 
@@ -53,7 +53,7 @@ export function BugFilter({ onSetFilter, filterBy }) {
             value={severity}
             onChange={handleChange}
         />
-        <LabelSelector onLabelChange={onLabelChange}  />
+        <LabelSelector onLabelChange={onLabelChange} />
 
     </form>
 

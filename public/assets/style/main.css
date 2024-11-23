@@ -4,13 +4,33 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-
 header {
     background-color: #b0aac0;
     padding: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+}
+
+.logo-icon {
+    width: 50px;
+    margin-inline-end: 100px;
+}
+
+.header-left-side {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-links {
+    margin-inline-end: 50px;
+}
+
+.header-username button {
+    margin-inline-start: 2em;
+
 }
 
 .main-app {
@@ -19,14 +39,23 @@ header {
     min-height: 100vh;
 }
 
-header .header-username{
-
+header .header-username {
     margin-right: 15px;
+}
+.preview-bug-labels{
+
 }
 main {
     flex-grow: 1;
     text-align: center;
+}
+.labels-selector {
+border: 1px solid rgb(159, 94, 172);
+    
+}
 
+.header-links {
+    margin-inline-end: 20px;
 }
 
 footer {
@@ -161,5 +190,5 @@ nav a:hover {
 .info-actions {}
 
 .container {
-    padding-inline: 8rem;
+    padding-inline: 5rem;
 }

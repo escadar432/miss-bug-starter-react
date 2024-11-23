@@ -18,7 +18,7 @@ export function LabelSelector({  onLabelChange }) {
     }
 
     return (
-        <div className="label-selector flex">
+        <div className="labels-selector">
             {labels.map(label => (
                 <div key={label}>
                     <input
