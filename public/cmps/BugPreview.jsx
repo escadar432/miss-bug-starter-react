@@ -7,7 +7,7 @@ export function BugPreview({ bug }) {
         <h1>🐛</h1>
         <p>Severity: <span>{bug.severity}</span></p>
         <ul>
-            {bug.labels.map(label => <li key={bug._id+''+label}>{label}</li>)}
+            {bug.labels && bug.labels.map(label => <li key={bug._id+''+label}>{label}</li>)}
         </ul>
 
     </article>

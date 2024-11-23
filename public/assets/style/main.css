@@ -19,6 +19,10 @@ header {
     min-height: 100vh;
 }
 
+header .header-username{
+
+    margin-right: 15px;
+}
 main {
     flex-grow: 1;
     text-align: center;

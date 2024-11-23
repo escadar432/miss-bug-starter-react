@@ -2,7 +2,7 @@
 1. Add filter select when adding new bug
  2. show labels on the bug view
  3. show user.name on header
-
+ 4. ADD labels on edit
 
 
 
