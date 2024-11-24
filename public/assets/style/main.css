@@ -54,7 +54,7 @@ main {
 }
 
 .labels-selector {
-    border: .1em solid #373343; border-radius: .3em; padding: .3em; margin: .3em; background-color: whitesmoke; border: 1 solid #373343;
+    border: .2em solid #373343; border-radius: .3em; padding: .3em; margin: .3em; border: 1 solid #373343;
 }
 
 .header-links {
@@ -132,7 +132,7 @@ nav a:hover {
     /* Spacing around the input */
     display: inline-block;
     /* Aligns well with other elements */
-    border: 1px solid #ccc;
+    border: 1px solid #373343;
     /* Subtle border */
     border-radius: 4px;
     /* Slightly rounded corners */
