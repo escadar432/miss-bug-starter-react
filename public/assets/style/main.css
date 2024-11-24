@@ -1,5 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    margin: auto;
+    margin: 0;
+    padding: 0;
     font-size: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -42,16 +47,16 @@ header {
 header .header-username {
     margin-right: 15px;
 }
-.preview-bug-labels{
 
-}
+
 main {
     flex-grow: 1;
     text-align: center;
 }
+
 .labels-selector {
-border: 1px solid rgb(159, 94, 172);
-    
+    border: 1px solid rgb(159, 94, 172);
+
 }
 
 .header-links {

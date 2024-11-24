@@ -14,6 +14,8 @@ export const bugService = {
 
 function query(filterBy = { txt: '', severity: 0, sortBy: { type: 'title', desc: 1 } }) {
     var bugs = gBugs
+    console.log("bugs filter", filterBy)
+
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
         bugs = gBugs.filter(bug => regex.test(bug.title))
@@ -21,16 +23,11 @@ function query(filterBy = { txt: '', severity: 0, sortBy: { type: 'title', desc:
     if (filterBy.severity) {
         bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
     }
-    console.log("bugs before label filter",bugs)
-    
-    //TODO EMPTY LABELS
     if (filterBy.labels) {
         const labelsToFilter = filterBy.labels
-        console.log("labelsToFilter", labelsToFilter)
-        
-        bugs = gBugs.filter(bug =>
-            labelsToFilter.every(label => bug.labels.includes(label))
-        )
+        bugs = gBugs.filter(bug => {
+            if (bugs.labels) labelsToFilter.every(label => bug.labels.includes(label))
+        })
     }
     //console.log("bugs from query", bugs)
     return Promise.resolve(bugs)
