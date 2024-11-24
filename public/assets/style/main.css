@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color: #b0aac0;
+    background-color: #373343;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -35,7 +35,6 @@ header {
 
 .header-username button {
     margin-inline-start: 2em;
-
 }
 
 .main-app {
@@ -55,8 +54,7 @@ main {
 }
 
 .labels-selector {
-    border: 1px solid rgb(159, 94, 172);
-
+    border: .1em solid #373343; border-radius: .3em; padding: .3em; margin: .3em; background-color: whitesmoke; border: 1 solid #373343;
 }
 
 .header-links {
@@ -64,7 +62,7 @@ main {
 }
 
 footer {
-    background-color: #b0aac0;
+    background-color: #373343;
     padding: 5px;
     margin: 10px 0 0;
     text-align: center;
@@ -166,22 +164,28 @@ nav a:hover {
     list-style: none;
     padding: 0;
     display: flex;
+    justify-content: flex-start;
+    justify-items: self-start;
     flex-wrap: wrap;
-    justify-content: center;
-    justify-items: end;
+    flex-direction: row;
 }
 
+
 .bug-preview {
-    background-color: #686277;
-    color: whitesmoke;
-    border-radius: .3em;
-    margin: 5px;
     text-align: center;
+    color: whitesmoke;
+    margin: 5px;
     padding: 5px;
+    background-color: #373343;
+    border-radius: .3em;
 
-    width: 200px;
-    height: 300px;
+    width: 250px;
+    height: 350px;
 
+}
+
+.bug-preview img{
+    width: 100px;
 }
 
 .bug-preview a {

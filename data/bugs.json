@@ -1,31 +1,28 @@
 [
     {
+        "title": "raining man",
+        "severity": 555,
+        "_id": "NSudu"
+    },
+    {
+        "title": "Biggie",
+        "severity": 999,
+        "_id": "qttIZ"
+    },
+    {
+        "title": "bug barosh",
+        "severity": 100,
+        "_id": "ifTZX"
+    },
+    {
+        "title": "bugi bug",
+        "severity": 900,
+        "_id": "5whcL"
+    },
+    {
         "title": "No title",
         "severity": 0,
-        "_id": "8EX6R",
-        "creator": {
-            "_id": "2",
-            "fullname": "c c"
-        }
-    },
-    {
-        "title": "Big bug",
-        "severity": 0,
-        "_id": "1gqlf"
-    },
-    {
-        "title": null,
-        "severity": 0,
-        "_id": "rE5K0",
-        "labels": [
-            "critical",
-            "need-CR",
-            "dev-branch"
-        ],
-        "creator": {
-            "_id": "1",
-            "fullname": "c c"
-        }
+        "_id": "8EX6R"
     },
     {
         "title": "Hollow",
@@ -34,17 +31,5 @@
         "labels": [
             "QA"
         ]
-    },
-    {
-        "title": "Beautiful world",
-        "severity": 0,
-        "_id": "MAnEt",
-        "labels": [
-            "critical"
-        ],
-        "creator": {
-            "_id": "1",
-            "fullname": "c c"
-        }
     }
 ]

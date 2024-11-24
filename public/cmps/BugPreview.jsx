@@ -3,8 +3,8 @@
 export function BugPreview({ bug }) {
     return <article>
         <h4>{bug.title}</h4>
-        <h1>🐛</h1>
-        <p>Severity: <span>{bug.severity}</span></p>
-        {bug.labels && bug.labels.map(label => <label>{label} | </label>)}
+        <img src={`https://robohash.org/${Math.random()}`} alt="bug img" />
+                <p>Severity: <span>{bug.severity}</span></p>
+        {bug.labels && bug.labels.map(label => <label key={bug.id + label}>{label} | </label>)}
     </article>
 }
