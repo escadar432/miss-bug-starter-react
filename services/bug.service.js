@@ -24,15 +24,13 @@ function query(filterBy = { txt: '', severity: 0, sortBy: { type: 'title', desc:
         bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
     }
     if (filterBy.labels) {
-        const labelsToFilter = filterBy.labels
-        bugs = gBugs.filter(bug => {
-            if (bugs.labels) labelsToFilter.every(label => bug.labels.includes(label))
-        })
+        const labelsToFilter = filterBy.labels;
+        bugs = gBugs.filter(bug => bug.labels && labelsToFilter.every(label => bug.labels.includes(label)));
     }
+
     //console.log("bugs from query", bugs)
     return Promise.resolve(bugs)
 }
-
 function getById(bugId) {
     const bug = gBugs.find(bug => bug._id === bugId)
     if (!bug) return Promise.reject('cannot find bug' + bugId)

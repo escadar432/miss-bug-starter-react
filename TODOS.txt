@@ -11,3 +11,4 @@
 // filter by severity >=
 //  2. show labels on the bug view
 
+Debounce and Throttle
